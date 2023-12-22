@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 
 import { Logo } from "./logo";
 import { ModeToggle } from "@/components/mode-toggle";
+import { Spinner } from "@/components/spinner";
 
 export const Navbar = () => {
   const { isAuthenticated, isLoading } = useConvexAuth();
@@ -23,7 +24,7 @@ export const Navbar = () => {
       <Logo />
       <div className="md:ml-auto md:justify-end justify-between w-full flex items-center gap-x-2">
         {isLoading && (
-          <div>Loading...</div>
+          <Spinner />
         )}
         {!isAuthenticated && !isLoading && (
           <>
