@@ -7,6 +7,7 @@ import { Spinner } from "@/components/spinner";
 // import { SearchCommand } from "@/components/search-command";
 
 import Navigation from "./_components/navigation";
+import { Toaster } from "sonner";
 
 const MainLayout = ({
   children
@@ -32,6 +33,7 @@ const MainLayout = ({
       <Navigation />
       <main className="flex-1 h-full overflow-y-auto">
         {/* <SearchCommand /> */}
+        <Toaster position="bottom-center" />
         {children}
       </main>
     </div>
