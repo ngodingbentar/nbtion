@@ -53,6 +53,8 @@ export const Item = ({
   const { user } = useUser();
   const router = useRouter();
   const create = useMutation(api.documents.create);
+  const archive = useMutation(api.documents.archive);
+
   const ChevronIcon = expanded ? ChevronDown : ChevronRight
 
   const handleExpand = (
@@ -67,7 +69,7 @@ export const Item = ({
   ) => {
     event.stopPropagation();
     if (!id) return;
-    const promise = create({ title: "Untitled", parentDocument: id })
+    const promise = create({ title: "Untitled 2", parentDocument: id })
       .then((documentId) => {
         if (!expanded) {
           onExpand?.();
@@ -79,6 +81,21 @@ export const Item = ({
       loading: "Creating a new note...",
       success: "New note created!",
       error: "Failed to create a new note."
+    });
+  };
+
+  const onArchive = (
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
+    event.stopPropagation();
+    if (!id) return;
+    const promise = archive({ id })
+      .then(() => router.push("/documents"))
+
+    toast.promise(promise, {
+      loading: "Moving to trash...",
+      success: "Note moved to trash!",
+      error: "Failed to archive note."
     });
   };
 
@@ -142,7 +159,7 @@ export const Item = ({
               side="right"
               forceMount
             >
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={onArchive}>
                 <Trash className="h-4 w-4 mr-2" />
                 Delete
               </DropdownMenuItem>
