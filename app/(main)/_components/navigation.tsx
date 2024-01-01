@@ -22,10 +22,12 @@ import { UserItem } from "./user-item";
 import { Item } from "./item";
 import { DocumentList } from "./document-list";
 
+import { useSearch } from "@/hooks/use-search";
+
 const Navigation = () => {
   const router = useRouter();
   // const settings = useSettings();
-  // const search = useSearch();
+  const search = useSearch();
   const params = useParams();
   const pathname = usePathname();
   const isMobile = useMediaQuery("(max-width: 768px)");
@@ -154,7 +156,7 @@ const Navigation = () => {
             label="Search"
             icon={Search}
             isSearch
-            onClick={handleCreate}
+            onClick={search.onOpen}
           />
           <Item
             label="Settings"

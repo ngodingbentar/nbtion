@@ -4,10 +4,10 @@ import { useConvexAuth } from "convex/react";
 import { redirect } from "next/navigation";
 
 import { Spinner } from "@/components/spinner";
-// import { SearchCommand } from "@/components/search-command";
 
 import Navigation from "./_components/navigation";
 import { Toaster } from "sonner";
+import { SearchComp } from "@/components/search-comp";
 
 const MainLayout = ({
   children
@@ -32,7 +32,7 @@ const MainLayout = ({
     <div className="h-full flex dark:bg-basedark">
       <Navigation />
       <main className="flex-1 h-full overflow-y-auto">
-        {/* <SearchCommand /> */}
+        <SearchComp />
         <Toaster position="bottom-center" />
         {children}
       </main>
