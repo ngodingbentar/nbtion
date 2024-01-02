@@ -23,10 +23,11 @@ import { Item } from "./item";
 import { DocumentList } from "./document-list";
 
 import { useSearch } from "@/hooks/use-search";
+import { useSettings } from "@/hooks/use-settings";
 
 const Navigation = () => {
   const router = useRouter();
-  // const settings = useSettings();
+  const settings = useSettings();
   const search = useSearch();
   const params = useParams();
   const pathname = usePathname();
@@ -161,7 +162,7 @@ const Navigation = () => {
           <Item
             label="Settings"
             icon={Settings}
-            onClick={handleCreate}
+            onClick={settings.onOpen}
           />
           <Item
             onClick={handleCreate}
